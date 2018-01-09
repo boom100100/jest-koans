@@ -60,7 +60,7 @@ describe("A mock", function() {
 
         // mock implementation to Throw an error
 
-        expect(foo.getBar).toThrow();
+        expect(foo.getBar).toThrow('expected error');
     });
 
 });

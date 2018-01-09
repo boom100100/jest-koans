@@ -153,7 +153,7 @@ describe("matchers", function () {
         };
 
         //Add assertion to expect that foo is throwing exception with message "foo bar baz"
-        //Add assertion to expect that foo is throwing exception with message matching pattern
+        //Add assertion to expect that foo is throwing exception with message matching pattern /bar/
         //Add assertion to expect that foo is throwing exception of specific Type
     });
 
