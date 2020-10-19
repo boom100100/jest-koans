@@ -13,14 +13,26 @@ describe("object matching", function () {
 
     it("matches objects with the expect key/value pairs", function () {
         //change to single assertion (use expect.objectContaining)
-        expect(foo.a).toEqual(1);
-        expect(foo.b).toEqual(2);
-        expect(foo.c).toEqual(3);
-        expect(foo.bar).toEqual(expect.any(String));
+        expect.objectContaining({
+            a: 1,
+            b: 2,
+            c: 3,
+            bar: "baz"
+        });
+        // expect(foo.a).toEqual(1);
+        // expect(foo.b).toEqual(2);
+        // expect(foo.c).toEqual(3);
+        // expect(foo.bar).toEqual(expect.any(String));
     });
 
     it("matches objects with the expect key/value pairs", function () {
         //change to single assertion (use toMatchObject)
+        expect(foo).toMatchObject({
+            a: 1,
+            b: 2,
+            c: 3,
+            bar: "baz"
+        });
         expect(foo.c).toEqual(3);
         expect(foo.bar).toEqual(expect.stringMatching(/ba/));
     });
@@ -28,16 +40,19 @@ describe("object matching", function () {
     it("checks an array", function () {
         const arr = [1, 2, 3, 4, 5, 6]; // modify to pass expectations
 
-        expect(arr).toEqual(expect.arrayContaining([3, 7, 9]));
-        expect(arr).not.toEqual(expect.arrayContaining([1, 2, 4]));
+        expect(arr).toEqual(expect.arrayContaining([1, 2, 4]));
+        expect(arr).not.toEqual(expect.arrayContaining([7, 8, 9]));
     });
 
     it("checks properties", function () {
         const houseForSale = { // modify to pass expectations
             fireplace: true,
-            pool: '20m',
+            // pool: '20m',
+            rooms: 4,
             kitchen: {
-                open: true
+                area: 20,
+                // open: true,
+                amenities: ['oven', 'stove', 'washer']
             }
         };
 

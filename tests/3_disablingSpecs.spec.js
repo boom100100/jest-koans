@@ -1,5 +1,5 @@
 //Disable suite with failing test
-describe("A disabled suite", function () {
+describe.skip("A disabled suite", function () {
     var foo;
 
     beforeEach(function () {
@@ -13,7 +13,7 @@ describe("A disabled suite", function () {
 
 //Disable failing spec
 describe("Pending specs", function () {
-    it("can be declared 'it.skip'", function () {
+    it.skip("can be declared 'it.skip'", function () {
         expect(true).toBe(false);
     });
 

@@ -3,7 +3,7 @@ describe("A suite", function () {
     var foo = 1;
 
     it("contains spec with an expectation", function () {
-        expect(false).toBe(true);
+        expect(true).toBe(true);
     });
 
     describe("is just a function", function () {
@@ -12,15 +12,15 @@ describe("A suite", function () {
         it("and so is a spec", function () {
             a = false;
 
-            expect(a).toBe(true);
+            expect(a).toBe(false);
         });
     });
 
     it("can have more than one expectation", function () {
-        var bar = 1;
+        var bar = 2;
 
         expect(bar).toEqual(2);
-        expect(false).toEqual(true);
+        expect(true).toEqual(true);
     });
 
     describe("can have nested describe", function () {

@@ -13,9 +13,8 @@ describe("Asynchronous specs", function () {
             .then(increaseNumber)
             .then(function () {
                 expect(number).toBe(43);
+                done(); // move to proper place
             });
-
-        done(); // move to proper place
     });
 
     it("waits for returned promise to resolve", function () {
@@ -23,18 +22,21 @@ describe("Asynchronous specs", function () {
 
         expect.hasAssertions();
 
-        waitAWhile()
+        return waitAWhile()
             .then(function () {
                 expect(number).toBe(42);
+                
             });
     });
 
     it("can resolve with value", function () {
         expect.assertions(1);
 
-        expect(waitAWhile().then(increaseNumber))
-        // .doSomething
-            .toBe(43);
+        return waitAWhile()
+            .then(increaseNumber)
+            .then(
+                () => expect(number).toBe(43)
+            );
     });
 
     function increaseNumber() {

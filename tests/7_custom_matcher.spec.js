@@ -4,12 +4,47 @@ describe("Player", function () {
     var song;
 
     beforeEach(function () {
-        player = new Player();
-        song = new Song();
+        
+        song = {
+            title: "A string"
+        };
+        player = {
+            currentlyPlayingSong: song,
+            isPlaying: true,
+            play: (song) => player.currentlyPlayingSong = song,
+            pause: () => player.isPlaying = false,
+         };
     });
 
     beforeEach(function () {
-        expect.extend({});
+        expect.extend({
+            toBePlaying(player, song) {
+                
+                if (player.currentlyPlayingSong === song) {
+                    return {
+                        pass: true,
+                        message: `${song} is playing`,
+                    };
+                } else {
+                    return {
+                        pass: false,
+                        message: `Expected ${song} to be playing`,
+                    }
+                }
+            }, toBePaused(player){
+                if (player.isPlaying === false) {
+                    return {
+                        pass: true,
+                        message: `The song is not playing`,
+                    };
+                } else {
+                    return {
+                        pass: false,
+                        message: `Expected the song to not be playing`,
+                    }
+                }
+            }
+        });
     });
 
     it("should be able to play a Song", function () {
@@ -30,6 +65,7 @@ describe("Player", function () {
             expect(player.isPlaying).toBeFalsy();
 
             // Use custom matcher assertion to assert that song is not playing
+            expect(player).toBePaused();
         });
 
     });

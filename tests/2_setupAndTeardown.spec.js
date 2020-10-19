@@ -4,14 +4,17 @@ describe("A spec (with setup and tear-down)", function () {
     beforeEach(function () {
         foo += 1;
     });
+    
+    const afterEach = () => {
+        foo = 0;
+    };
 
     it("setups data for tests", function () {
-        //Fix assertion
         expect(foo).toEqual(1);
     });
 
     it("have tear-down code to cleanup after tests", function () {
-        //add afterEach method to cleanup
+        afterEach();
         expect(foo).toEqual(0);
     });
 });
